@@ -1,3 +1,4 @@
+import { Decimal128 } from "mongodb";
 import mongoose from "mongoose";
 
 const ListaComprasSchema = new mongoose.Schema({
@@ -13,7 +14,7 @@ const ListaComprasSchema = new mongoose.Schema({
     {
       nome: String,
       quantidade: Number,
-      preco: Number,
+      preco: Decimal128,
       situacao: Boolean,
     },
   ],

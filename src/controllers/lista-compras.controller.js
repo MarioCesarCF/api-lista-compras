@@ -22,8 +22,9 @@ class ListaComprasController {
   findAll = async (req, res) => {
     try {
       const listas = await listaComprasRepository.getAll();
+      const data = {data: listas};
 
-      return res.status(200).send(listas);
+      return res.status(200).send(data);
     } catch (err) {
       if (err.status && err.message) {
         return res.status(err.status).send({ message: err.message });
@@ -72,11 +73,11 @@ class ListaComprasController {
   };
 
   removeProduto = async (req, res) => {
-    const {produtoId} = req.body;
     const { id: listaId } = req.params;
-
+    const { _id } = req.body;
+    
     try {
-      const response = await listaComprasRepository.removeProduto(listaId, produtoId);
+      const response = await listaComprasRepository.removeProduto(listaId, _id);
 
       return res.send(response);
     } catch (err) {
